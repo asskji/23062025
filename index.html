@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <div class="nav-item active" data-section="input"><i class="fa-solid fa-database"></i></div>
+            <div class="nav-item" data-section="format-cutting">РЦ</div>
+            <div class="nav-item" data-section="edge-banding1">КОС-1</div>
+            <div class="nav-item" data-section="edge-banding2">КОС-2</div>
+            <div class="nav-item" data-section="nesting">ОЦН</div>
+            <div class="nav-item" data-section="membrane-pressing">МВП</div>
+        </div>
+        <div id="input" class="section active">
+            <h1>Ввод данных</h1>
+            <div class="input-section">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label>Выберите ФИО</label>
+                            <select id="ono-select">
+                               <option value="">Выберите ФИО</option>
+                                <option value="ono1">Поляшов Сергей Петрович</option>
+                                <option value="ono2">Александров Василий Николаевич</option>
+                                <option value="ono3">Саратовцева Алла Вячеславовна</option>
+                                <option value="ono4">Пимахов Михаил Алексеевич</option>
+                                <option value="ono5">Просвирнин Николай Александрович</option>
+                                <option value="ono6">Семенов Игорь Николаевич</option>
+                                <option value="ono7">Языков Николай Владимирович</option>
+                                <option value="ono8">Черемухин Анатолий Константинович</option>
+                                <option value="ono9">Мотин Иван Николаевич</option>
+                                <option value="ono10">Шабанина Татьяна Евгеньевна</option>
+                                <option value="ono11">Карташов Алексей Николаевич</option>
+                                <option value="ono12">Долгов Александр Сергеевич</option>
+                                <option value="ono13">Дегтев Денис Сергеевич</option>
+                                <option value="ono14">Клочков Илья</option>
+                                <option value="ono15">Пименов Кирилл Андреевич</option>
+                                <option value="ono16">Вирясов Алексей Игоревич</option>
+                                <option value="ono17">Романов Антон Сергеевич</option>
+                                <option value="ono18">Береговой Владимир</option>
+                                <option value="ono19">Чистов Александр Сергеевич</option>
+                                <option value="ono20">Ивахненко Алексей</option>
+                                <option value="ono21">Култышев Денис Владимирович</option>
+                                <option value="ono22">Шанаев Максим Викторович</option>
+                                <option value="ono23">Рябов Александар Александрович</option>
+                                <option value="ono24">Мельникова Елена Васильевна</option>
+                                <option value="ono25">Бакурский Николай Владимирович</option>
+                                <option value="ono26">Фадин Александр Александрович</option>
+                                <option value="ono27">Ефремов Сергей</option>
+                                <option value="ono28">Агатий Анатолий</option>
+                                <option value="ono29">Куренков Максим Анатольевич</option>
+                                <option value="ono30">Радиницкая Лариса Геннадьевна</option>
+                                <option value="ono31">Масленников Александр Владимирович</option>
+                                <option value="ono32">Назаров Сергей Александрович</option>
+                                <option value="ono33">Яшин Владимир Валентинович</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label>Выберите участок</label>
+                            <select id="area-select">
+                                <option value="">Выберите участок</option>
+                                <option value="format-cutting">Форматно-раскроечный</option>
+                                <option value="edge-banding1">Кромко-облицовочный 1</option>
+                                <option value="edge-banding2">Кромко-облицовочный 2</option>
+                                <option value="nesting">Нестинг</option>
+                                <option value="membrane-pressing">Мембранно-вакуумный</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label>Выберите станок</label>
+                            <select id="machine-select">
+                                 <option value="">Выберите станок</option>
+                                <option value="machine1">Holzma HPL400</option>
+                                <option value="machine2">Mayer PS2Z-P14</option>
+                                <option value="machine3">Edgeteq-S-500-0-200-73-0417</option>
+                                <option value="machine4">Edgeteq-S-500-0-200-73-0500</option>
+                                <option value="machine5">Cyflex-F900-AB_220076</option>
+                                <option value="machine6">Cyflex-F900-AB_223853</option>
+                                <option value="machine7">УПРМ</option>
+                                <option value="machine8">УПЗ 1</option>
+                                <option value="machine9">Edgeteq-S-500-0-200-73-0449</option>
+                                <option value="machine10">Centateq-N-500-0-250-81-7999</option>
+                                <option value="machine11">Centateq-N-500-0-250-81-6303</option>
+                                <option value="machine12">Плоттерная резка</option>
+                                <option value="machine13">Лазерная гравировка</option>
+                                <option value="machine14">SRRP-1000B</option>
+                                <option value="machine15">Intermac</option>
+                                <option value="machine16">Обработка фацета</option>
+                                <option value="machine17">Обработка прямолинейной кромки стекла</option>
+                                <option value="machine18">Обработка криволинейной кромки стекла</option>
+                                <option value="machine19">Склад фурнитуры</option>
+                                <option value="machine20">Пескоструйная обработка</option>
+                                <option value="machine21">Склад готовой продукции</option>
+                                <option value="machine22">Технический контроль</option>
+                                <option value="machine23">Мойка стекла</option>
+                                <option value="machine24">Filato FL5000US-2_041070215</option>
+                                <option value="machine25">Nanxing NCB612D-1_061260212</option>
+                                <option value="machine26">Nanxing Edge Machine</option>
+                                <option value="machine27">TM2680F-20200422</option>
+                                <option value="machine28">TM2680F-20210111</option>
+                                <option value="machine29">Paqteq-C-250-0-303-73-0009</option>
+                                <option value="machine30">Mayer_UpTable_P29</option>
+                                <option value="machine31">TM2680F-201908103</option>
+                                <option value="machine32">Nanxing NCB612D-2_061270068</option>
+                                <option value="machine33">Nanxing NCB612D-3_061150135</option>
+                                <option value="machine34">Edgeteq-S-500-0-200-73-5265</option>
+                                <option value="machine35">Bottero-332BKM</option>
+                                <option value="machine36">Enkong-XM351A-002</option>
+                                <option value="machine37">Deway-ZM9-006</option>
+                                <option value="machine38">Enkong-ZM10W-007</option>
+                                <option value="machine39">Enkong-XM351-003</option>
+                                <option value="machine40">Enkong-XM351-001</option>
+                                <option value="machine41">Nanxing NCB612D-4_061330024</option>
+                                <option value="machine42">Nanxing NCB612D-5_061330023</option>
+                                <option value="machine43">СБМ 1</option>
+                                <option value="machine44">СБМ 2</option>
+                                <option value="machine45">СБМ 3</option>
+                                <option value="machine46">СБМ 4</option>
+                                <option value="machine47">СБМ 5</option>
+                                <option value="machine48">СБМ 6</option>
+                                <option value="machine49">СБМ 7</option>
+                                <option value="machine50">СБМ 8</option>
+                                <option value="machine51">СБМ 9</option>
+                                <option value="machine52">СБМ 10</option>
+                                <option value="machine53">СБМ 11</option>
+                                <option value="machine54">СБМ 12</option>
+                                <option value="machine55">СБМ 13</option>
+                                <option value="machine56">СБМ 14</option>
+                                <option value="machine57">Универсальный ресурс исполнения (норма длительности - 1 час)
+                                </option>
+                                <option value="machine58">Filato FL-50P</option>
+                                <option value="machine59">TM2680F-20211290</option>
+                                <option value="machine60">СБЗ 1</option>
+                                <option value="machine61">СБЗ 2</option>
+                                <option value="machine62">СБЗ 3</option>
+                                <option value="machine63">СБЗ 4</option>
+                                <option value="machine64">СБЗ 5</option>
+                                <option value="machine65">СБЗ 6</option>
+                                <option value="machine66">СБЗ 7</option>
+                                <option value="machine67">СБЗ 8</option>
+                                <option value="machine68">СБЗ 9</option>
+                                <option value="machine69">СБЗ 10</option>
+                                <option value="machine70">СБЗ 11</option>
+                                <option value="machine71">СБЗ 12</option>
+                                <option value="machine72">УПМ 1</option>
+                                <option value="machine73">УПМ 2</option>
+                                <option value="machine74">УПМ 3</option>
+                                <option value="machine75">УПМ 4</option>
+                                <option value="machine76">УПМ 5</option>
+                                <option value="machine77">УПМ 6</option>
+                                <option value="machine78">Тест станок</option>
+                                <option value="machine79">Osterman 0464</option>
+                                <option value="machine80">KDT KD-610HF_6610230601823</option>
+                                <option value="machine81">KDT KD-610HF_6610230800123</option>
+                                <option value="machine82">KDT KDT-6032JL_60322306021</option>
+                                <option value="machine83">Bala Intelpack_7818</option>
+                                <option value="machine84">УПЗ 2</option>
+                                <option value="machine85">УПЗ 3</option>
+                                <option value="machine86">УПЗ 4</option>
+                                <option value="machine87">KDT KS-542HL</option>
+                                <option value="machine88">ЛСБЗ 1</option>
+                                <option value="machine89">СБМ уч 1</option>
+                                <option value="machine90">СБМ уч 2</option>
+                                <option value="machine91">СБМ уч 3</option>
+                                <option value="machine92">MSE-MINI</option>
+                                <option value="machine93">Filato FL-91</option>
+                                <option value="machine94">УПРМ 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-col" id="operator-col">
+                        <div class="form-group">
+                            <label>Выберите оператора</label>
+                            <select id="operator-select">
+                                <option value="">Выберите оператора</option>
+                                <option value="operator1">Оператор 1</option>
+                                <option value="operator2">Оператор 2</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label>Введите количество смен</label>
+                            <input type="number" id="shift-count" min="1">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="shift-inputs-container" class="shift-inputs">
+                </div>
+                
+                <div class="input-buttons">
+                    <button id="delete-all-btn" class="delete-all-btn">Удалить все отчеты</button>
+                    <button id="calculate-btn">Рассчитать</button>
+                    <button id="export-excel-btn" class="export-excel-btn">Скачать отчет в Excel</button>
+                </div>
+            </div>
+        </div>
+        <!-- Форматно-раскроечный -->
+        <div id="format-cutting" class="section">
+            <div class="report-buttons">
+                <button class="full-report-btn">Полный отчет</button>
+                <button class="short-report-btn">Краткий отчет</button>
+            </div>
+            <h1>Участок форматно-раскроечный</h1>
+            <table id="format-cutting-table">
+                <thead>
+                    <tr>
+                        <th>Оператор</th>
+                        <th>Топ (мин)</th>
+                        <th>Тсмен (мин)</th>
+                        <th>Км.эфф (%)</th>
+                        <th>Ккв.перем (%)</th>
+                        <th>Ккв.пост. (%)</th>
+                        <th>Кст (%)</th>
+                        <th>Rоп(руб/мин)</th>
+                        <th>Стоп(руб)</th>
+                        <th>Премия (руб)</th>
+                        <th>ЗП (руб)</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Кромко-облицовочный 1 -->
+        <div id="edge-banding1" class="section">
+            <div class="report-buttons">
+                <button class="full-report-btn">Полный отчет</button>
+                <button class="short-report-btn">Краткий отчет</button>
+            </div>
+            <h1>Участок кромко-облицовочный 1</h1>
+
+            <table id="edge-banding1-table">
+                <thead>
+                    <tr>
+                        <th>Оператор</th>
+                        <th>Топ (мин)</th>
+                        <th>Перестройки (мин)</th>
+                        <th>Обитого (мин)</th>
+                        <th>Тсмен(мин)</th>
+                        <th>Ки-эфф (%)</th>
+                        <th>СТом (руб)</th>
+                        <th>СТом_кэфф (руб)</th>
+                        <th>Кол1</th>
+                        <th>СТом_Топ1 (руб)</th>
+                        <th>Кхв (%)</th>
+                        <th>Премия (руб)</th>
+                        <th>ЗП (руб)</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Кромко-облицовочный 2 -->
+        <div id="edge-banding2" class="section">
+            <div class="report-buttons">
+                <button class="full-report-btn">Полный отчет</button>
+                <button class="short-report-btn">Краткий отчет</button>
+            </div>
+            <h1>Участок кромко-облицовочный 2</h1>
+
+            <table id="edge-banding2-table">
+                <thead>
+                    <tr>
+                        <th>Оператор</th>
+                        <th>Топ (мин)</th>
+                        <th>Перестройки (мин)</th>
+                        <th>Обитого (мин)</th>
+                        <th>Тсмен(мин)</th>
+                        <th>Км.эфф (%)</th>
+                        <th>СТом (руб)</th>
+                        <th>СТом_кэфф (руб)</th>
+                        <th>Кол2</th>
+                        <th>СТом_Тол2 (руб)</th>
+                        <th>Ккв (%)</th>
+                        <th>Премия (руб)</th>
+                        <th>ЗП (руб)</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Нестинг -->
+        <div id="nesting" class="section">
+            <div class="report-buttons">
+                <button class="full-report-btn">Полный отчет</button>
+                <button class="short-report-btn">Краткий отчет</button>
+            </div>
+            <h1>Участок нестинг</h1>
+
+            <table id="nesting-table">
+                <thead>
+                    <tr>
+                        <th>Оператор</th>
+                        <th>Топ (мин)</th>
+                        <th>Трдв (мин)</th>
+                        <th>Км.эфф (%)</th>
+                        <th>Ккв.перм. (%)</th>
+                        <th>Ккв.пост. (%)</th>
+                        <th>Rоп(руб/мин)</th>
+                        <th>СТоп (руб)</th>
+                        <th>ЗП (руб)</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Мембранно-вакуумный -->
+        <div id="membrane-pressing" class="section">
+            <div class="report-buttons">
+                <button class="full-report-btn">Полный отчет</button>
+                <button class="short-report-btn">Краткий отчет</button>
+            </div>
+            <h1>Участок мембранно-вакуумного прессования</h1>
+
+            <table id="membrane-pressing-table">
+                <thead>
+                    <tr>
+                        <th>Оператор</th>
+                        <th>Тсмен(мин)</th>
+                        <th>Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Модальное окно подтверждения удаления -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3>Подтверждение удаления</h3>
+            <p>Вы уверены, что хотите удалить эту запись?</p>
+            <div class="modal-buttons">
+                <button class="cancel-btn">Отмена</button>
+                <button class="delete-confirm-btn">Удалить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно подтверждения удаления всех отчетов -->
+    <div id="deleteAllModal" class="modal">
+        <div class="modal-content">
+            <h3>Подтверждение удаления</h3>
+            <p>Вы уверены, что хотите удалить ВСЕ отчеты? Это действие нельзя отменить.</p>
+            <div class="modal-buttons">
+                <button class="cancel-btn">Отмена</button>
+                <button class="delete-all-confirm-btn">Удалить все</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
